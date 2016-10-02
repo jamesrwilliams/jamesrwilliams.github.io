@@ -1,0 +1,80 @@
+/* Boostrap Overrides */
+
+.navbar {
+
+	margin-bottom: 0;
+	background: #1a1a25;
+	border-bottom: 0;
+
+	-webkit-transition: background 0.3s ease;
+
+}
+
+.navbar-default .navbar-brand,
+.navbar-toggle {color: white;}
+
+.navbar a { color: white; -webkit-font-smoothing: antialiased;}
+
+p {
+
+	line-height: 2.5rem;
+
+}
+
+.jumbotron {
+
+	background: url(../img/project_background.png) center center no-repeat;
+	background-size: cover;
+	padding: 10vh 0;
+}
+
+.jumbotron h1 { color: white;}
+.jumbotron small {color: rgba(255,255,255,0.8); font-weight: 100; letter-spacing: 0.2rem;}
+
+img {
+
+	max-width: 100%;
+	height:auto;
+
+}
+
+#screenshot {
+
+	margin-bottom: 20px;
+	margin-top: 0px;
+	-webkit-transition: all 0.7s ease-out;
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+	#screenshot {
+
+		margin-top: -200px;
+
+	}
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+	#screenshot {
+
+		margin-top: -200px;
+
+	}
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+	#screenshot {
+
+		margin-top: -300px;
+
+	}
+
+}
