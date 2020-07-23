@@ -7,13 +7,14 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<meta property="og:title" content="">
-	<meta property="og:type" content="">
-	<meta property="og:url" content="">
-	<meta property="og:image" content="">
+	<meta property="og:title" content="James R. Williams | jamesrwilliams.github.io">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content=https://jamesrwilliams.github.io">
+	<meta property="og:image" content="https://www.gravatar.com/avatar/b2623db89a42dd363c33d1d4df39654a?s=100">
 
-	<link rel="manifest" href="site.webmanifest">
-	<link rel="apple-touch-icon" href="icon.png">
+	<meta name="twitter:creator" content="@james_rwilliams">
+	<meta name="twitter:title" content="James R. Williams | jamesrwilliams.github.io">
+
 	<link rel="stylesheet" href="css/main.css">
 
 	<meta name="theme-color" content="#fafafa">
@@ -22,24 +23,29 @@
 <body class="no-js">
 
 	<header>
-		<h1>James R. Williams on GitHub</h1>
+		<h1><a href="https://jamesrwilliams.ca" target="_blank">James R. Williams</a> on GitHub</h1>
 		<p>I'm a full-stack web developer based in Toronto, who enjoys building delightfully fast, easy to use, and engaging digital projects. Here are my most recent GitHub projects:</p>
 	</header>
 
 	<main>
+		<section id="active">
 
-		<h2>Active projects</h2>
+			<h2>Active projects</h2>
 
-		<ul id="projects-active">
-			<li class="error-loading">Loading some projects from GitHub...</li>
-		</ul>
+			<ul id="projects-active">
+				<li class="error-loading">Loading some projects from GitHub...</li>
+			</ul>
 
-		<h2>Archived projects</h2>
+		</section>
+		<section id="archived">
 
-		<ul id="projects-archived">
-			<li class="error-loading">Loading some projects from GitHub...</li>
-		</ul>
+			<h2>Archived projects</h2>
 
+			<ul id="projects-archived">
+				<li class="error-loading">Loading some projects from GitHub...</li>
+			</ul>
+
+		</section>
 	</main>
 
 	<script>
@@ -54,6 +60,8 @@
             return response.json();
           })
           .then(function (myJson) {
+
+            myJson.sort((a,b) => (a.pushed_at > b.pushed_at) ? 1 : ((b.pushed_at > a.pushed_at) ? -1 : 0));
 
             myJson.forEach((project) => {
               if(!project.fork) {
@@ -72,27 +80,30 @@
 
         function addToPage(archived = true, project) {
 
-          console.log(project);
-
-          let destinationElement = (archived ? $archivedProjectsList : $activeProjectsList );
-
           let $projectEntry = document.createElement('li');
+
+          let projectLink = `<a href="${project.html_url}" target="_blank">${project.name}</a>`;
 
           if(archived) {
 
             let date = new Date(project.pushed_at);
             let formatted_date = date.getFullYear() + '-' + (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate() );
 
-            $projectEntry.innerHTML = `<time datetime="${date}">${formatted_date}</time> <a href="${project.html_url}">${project.full_name}</a>
- <span class="project-language">${( project.language ? project.language : '' )}</span>`;
+            $projectEntry.innerHTML = `<a href="${project.html_url}" target="_blank" rel="noopener"><time datetime="${date}">${formatted_date}</time><span class="project-full_name">${project.full_name}</span>
+ <span class="project-language">${( project.language ? project.language : '' )}</span></a>`;
+
+            $archivedProjectsList.prepend($projectEntry);
+
           } else {
-            let heading = `<h3 class="project-full_name"><a href="${project.html_url}" target="_blank">${project.full_name}</a></h3>`;
+
+            let heading = `<h3 class="project-full_name">${projectLink}</h3>`;
             let description = `<span class="project-description">${project.description}</span>`;
 
             $projectEntry.innerHTML = heading + description;
-          }
 
-          destinationElement.append($projectEntry);
+            $activeProjectsList.prepend($projectEntry);
+
+          }
 
         }
 
