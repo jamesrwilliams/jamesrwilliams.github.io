@@ -1,121 +1,14 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>James R. Williams | jamesrwilliams.github.io</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta property="og:title" content="James R. Williams | jamesrwilliams.github.io">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content=https://jamesrwilliams.github.io">
-	<meta property="og:image" content="https://www.gravatar.com/avatar/b2623db89a42dd363c33d1d4df39654a?s=100">
-
-	<meta name="twitter:creator" content="@james_rwilliams">
-	<meta name="twitter:title" content="James R. Williams | jamesrwilliams.github.io">
-
-	<link rel="stylesheet" href="css/main.css">
-
-	<meta name="theme-color" content="#fafafa">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Redirecting...</title>
+  <meta http-equiv="refresh" content="0; url=https://jamesrwilliams.ca" />
+  <link rel="canonical" href="https://jamesrwilliams.ca" />
 </head>
-
-<body class="no-js">
-
-	<header>
-		<h1><a href="https://jamesrwilliams.ca" target="_blank">James R. Williams</a> on GitHub</h1>
-		<p>I'm a full-stack web developer based in Toronto, who enjoys building delightfully fast, easy to use, and engaging digital projects. Here are my most recent GitHub projects:</p>
-	</header>
-
-	<main>
-		<section id="active">
-
-			<h2>Active projects</h2>
-
-			<ul id="projects-active">
-				<li class="error-loading">Loading some projects from GitHub...</li>
-			</ul>
-
-		</section>
-		<section id="archived">
-
-			<h2>Archived projects</h2>
-
-			<ul id="projects-archived">
-				<li class="error-loading">Loading some projects from GitHub...</li>
-			</ul>
-
-		</section>
-	</main>
-
-	<script>
-
-      document.addEventListener("DOMContentLoaded", (event) => {
-
-        const $activeProjectsList = document.getElementById('projects-active');
-        const $archivedProjectsList = document.getElementById('projects-archived');
-
-        fetch("https://api.github.com/users/jamesrwilliams/repos")
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (myJson) {
-
-            myJson.sort((a,b) => (a.pushed_at > b.pushed_at) ? 1 : ((b.pushed_at > a.pushed_at) ? -1 : 0));
-
-            myJson.forEach((project) => {
-              if(!project.fork) {
-                addToPage(project.archived, project);
-              }
-            });
-
-            setTimeout(function () {
-              document.body.classList.remove('no-js');
-            }, 500);
-
-          })
-          .catch(function (error) {
-            console.log("Error: " + error);
-          });
-
-        function addToPage(archived = true, project) {
-
-          let $projectEntry = document.createElement('li');
-
-          let projectLink = `<a href="${project.html_url}" target="_blank">${project.name}</a>`;
-
-          if(archived) {
-
-            let date = new Date(project.pushed_at);
-            let formatted_date = date.getFullYear() + '-' + (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate() );
-
-            $projectEntry.innerHTML = `<a href="${project.html_url}" target="_blank" rel="noopener"><time datetime="${date}">${formatted_date}</time><span class="project-full_name">${project.full_name}</span>
- <span class="project-language">${( project.language ? project.language : '' )}</span></a>`;
-
-            $archivedProjectsList.prepend($projectEntry);
-
-          } else {
-
-            let heading = `<h3 class="project-full_name">${projectLink}</h3>`;
-            let description = `<span class="project-description">${project.description}</span>`;
-
-            $projectEntry.innerHTML = heading + description;
-
-            $activeProjectsList.prepend($projectEntry);
-
-          }
-
-        }
-
-      });
-
-	</script>
-
-	<script>
-	  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-	  ga('create', 'UA-26549429-9', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-	</script>
-	<script src="https://www.google-analytics.com/analytics.js" async></script>
+<body>
+  <p>Redirecting to <a href="https://jamesrwilliams.ca">jamesrwilliams.ca</a></p>
 </body>
-
 </html>
